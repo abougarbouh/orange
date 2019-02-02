@@ -134,5 +134,6 @@ void sProduct(vector v1, vector v2)
 
 void getMag(vector v)
 {
-	cout << "The magnitude of the vector is: " << sqrt((v.x * v.x + v.y * v.y)) << endl << endl <<endl;
+	cout << "The magnitude of the vector is: " << sqrt((v.x * v.x + v.y * v.y)) << endl << endl
+	     <<endl;
 }
