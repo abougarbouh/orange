@@ -1,0 +1,138 @@
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <string.h>
+#include <cmath>
+using namespace std;
+
+struct vector
+{
+	double x, y;
+};
+
+void getchoice(int &);
+void getVchoice(int &);
+void vAddition(vector v1, vector v2, vector &v3);
+void vSubstract(vector v1, vector v2, vector &v3);
+void sMult(int k, vector v, vector &v3);
+void sProduct(vector v1, vector v2);
+void getMag(vector v);
+void vPrint(vector v);
+
+int main()
+{
+	int choice, vchoice, k = 10;
+	vector v1 = {4, 9};
+	vector v2 = {3, -1};
+	vector v3;
+	
+	getchoice(choice);
+	while(choice != 0)
+	{
+		switch(choice)
+		{
+			case 1:
+				vAddition(v1, v2, v3);
+				vPrint(v3);
+				break;
+				
+			case 2:
+				vSubstract(v1, v2, v3);
+				vPrint(v3);
+				break;
+				
+			case 3:
+				getVchoice(vchoice);								
+				if(vchoice == 1)
+				{
+					sMult(k, v1, v3);
+					vPrint(v3);
+				}
+				if(vchoice == 2)
+				{
+					sMult(k, v2, v3);
+					vPrint(v3);
+				}
+				break;
+				
+			case 4:
+				sProduct(v1, v2);
+				break;
+				
+			case 5:
+				getVchoice(vchoice);								
+				if(vchoice == 1)
+				{
+					getMag(v1);
+				}
+				if(vchoice == 2)
+				{
+					getMag(v2);
+				}
+				break;
+		}
+		
+		getchoice(choice);
+	}
+}
+
+void getchoice(int &choice)
+{
+	do
+	{
+		cout << "Choose an option.\n";
+		cout << "1. Add vectors.\n";
+		cout << "2. Substract vectors.\n";
+		cout << "3. Scalar multiplication.\n";
+		cout << "4. Scalar product.\n";
+		cout << "5. Calculate vector magnitude.\n";
+		cout << "0. Exit program.\n";
+		cin >> choice;
+		system("cls");
+	}while(choice<0 || choice > 5);
+}
+
+void getVchoice(int &vchoice)
+{
+	do
+	{
+		cout << "Choose the vector you want to multiply.\n";
+		cout << "1. Vector 1.\n";
+		cout << "2. Vector 2.\n";
+		cin >> vchoice;
+		system("cls");
+	} while(vchoice != 1 && vchoice !=2);
+}
+
+void vPrint(vector v)
+{
+	cout << "The result is: (" << v.x << ", " << v.y << ")\n" << endl << endl;
+}
+
+void vAddition(vector v1, vector v2, vector &v3)
+{
+	v3.x = v1.x + v2.x;
+	v3.y = v1.y + v2.y;
+}
+
+void vSubstract(vector v1, vector v2, vector &v3)
+{
+	v3.x = v1.x - v2.x;
+	v3.y = v1.y - v2.y;
+}
+
+void sMult(int k, vector v, vector &v3)
+{
+	v3.x = k*v.x;
+	v3.y = k*v.y;
+}
+
+void sProduct(vector v1, vector v2)
+{
+	cout << "The scalar product is: " << (v1.x*v2.x + v1.y*v2.y) << endl << endl<< endl;
+}
+
+void getMag(vector v)
+{
+	cout << "The magnitude of the vector is: " << sqrt((v.x * v.x + v.y * v.y)) << endl << endl <<endl;
+}
